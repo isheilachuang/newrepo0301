@@ -1,0 +1,75 @@
+---
+title: "613HW2"
+author: "Ting Yi Chuang"
+date: "2024-01-23"
+output: html_document
+---
+
+```{r}
+library(tidyverse)     
+library(dplyr)
+```
+4) Write an if- else if- else sequence of commands that will output the following
+statements and appropriate output; If a value is divisible by 3 and 5 the output
+statement is "divisible by Three and Five", If a value is divisible by 3 and 4, 
+the output statement is "divisible by Three and Four, If a value is a number that
+does not fall into either category, the output statement should be  "neither".
+Use your function to show output statements for values 16, 45, and 24.
+
+```{r}
+B <- function(y) {
+  if (y %% 3 == 0 && y %% 5 == 0) {
+    print("divisible by Three and Five")
+  } else if (y %% 3 == 0 && y %% 4 == 0) {
+    print("divisible by Three and Four")
+  } else {
+    print("neither")
+  }
+}
+
+B(20)
+B(90)
+B(48)
+```
+
+5) Use piping and a dplyr command show and use R code to produce the following modified mpg data table that contains only quantitative variables
+
+Now use the “special loop coding chunk”, illustrated in class, to produce the variance for all variables of the modified data table.
+
+```{r}
+mpg_quantitativevariables <- mpg %>% 
+  select_if(is.numeric)
+
+output <- vector("double", ncol(mpg_quantitativevariables))  
+for (i in seq_along(mpg_quantitativevariables)) {
+  output[[i]] <- var(mpg_quantitativevariables[[i]]) 
+}
+
+output
+```
+
+6) Construct a for loop (as illustrated in the notes) that will produce the difference between the cube and the square for each prime number between 10 and 30.  (There are 6 answers. The first answer is 1210, your for loop coding should produce the other five answers)
+
+```{r}
+prime <- function(num) {
+  if (num == 2) {
+    return(TRUE)
+  }
+  if (num < 2 || num %% 2 == 0) {
+    return(FALSE)
+  }
+  for (i in 3:sqrt(num)) {
+    if (num %% i == 0) {
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+}
+
+for (number in 10:30) {
+  if (prime(number)) {
+    difference <- number^3 - number^2
+    print(difference)
+  }
+}
+```

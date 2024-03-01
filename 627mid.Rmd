@@ -1,0 +1,11 @@
+---
+title: "627Mid"
+author: "Ting Yi Chuang"
+date: "2024-02-29"
+output: html_document
+---
+
+```{r}
+
+```
+
